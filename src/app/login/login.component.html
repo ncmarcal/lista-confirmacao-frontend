@@ -8,13 +8,13 @@
           <div class="mb-3">
             <p-float-label variant="on">
               <label for="username">Usuário</label>
-              <input type="text" formControlName="usuario" pInputText />
+              <input type="text" formControlName="usuario" pInputText (keyup.enter)="login()" />
             </p-float-label>
           </div>
           <div class="mb-2">
             <p-float-label variant="on">
               <label for="password">Senha</label>
-              <input type="password" formControlName="senha" pInputText />
+              <input type="password" formControlName="senha" pInputText (keyup.enter)="login()" />
             </p-float-label>
           </div>
           <div class="mb-4">

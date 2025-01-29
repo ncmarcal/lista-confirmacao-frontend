@@ -1,5 +1,5 @@
+import { URL_API } from './../shared/url-api';
 import { HttpClient } from '@angular/common/http';
-import { LINK_API } from './../shared/link-api';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequisicaoLoginModel } from './model/requisicao-login.model';
@@ -13,7 +13,7 @@ export class LoginService {
 
   login(requisicao: RequisicaoLoginModel): Observable<Object> {
     return new Observable<Object>((observer) => {
-      this.httpClient.post(LINK_API + '/auth/login', requisicao).subscribe({
+      this.httpClient.post(URL_API + '/auth/login', requisicao).subscribe({
         next: (resposta) => {
           observer.next(resposta);
           observer.complete();
