@@ -4,24 +4,26 @@
       <div class="col-5">
         <div class="form-bg mt-4">
           <p class="boas-vindas">Bem-vindo de volta!</p>
+          <form [formGroup]="formLogin">
           <div class="mb-3">
             <p-float-label variant="on">
               <label for="username">Usuário</label>
-              <input type="text" pInputText />
+              <input type="text" formControlName="usuario" pInputText />
             </p-float-label>
           </div>
           <div class="mb-2">
             <p-float-label variant="on">
               <label for="password">Senha</label>
-              <input type="password" pInputText />
+              <input type="password" formControlName="senha" pInputText />
             </p-float-label>
           </div>
           <div class="mb-4">
             <a class="signup" href="#">Crie uma conta</a>
           </div>
           <div class="mb-4">
-            <p-button class="d-grid" label="Entrar"/>
+            <p-button class="d-grid" label="Entrar" (onClick)="login()"/>
           </div>
+          </form>
         </div>
       </div>
       <div class="col-1">
