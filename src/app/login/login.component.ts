@@ -11,6 +11,7 @@ import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TokenService } from '../shared/services/token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent {
   private service = inject(LoginService);
   private router = inject(Router);
   private messageService = inject(MessageService)
+  private tokenService = inject(TokenService);
 
   protected formLogin = this.fb.group({
     usuario: ['', Validators.required],
@@ -39,7 +41,7 @@ export class LoginComponent {
       next: (resposta) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login realizado com sucesso!' });
         sessionStorage.setItem("auth-token", Object.values(resposta).toString());
-        this.router.navigate(['']);
+        this.navegarVerificandoRole();
       },
       error: (erro: HttpErrorResponse) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: erro.error });
@@ -47,6 +49,13 @@ export class LoginComponent {
     })
   }
 
+  private navegarVerificandoRole() {
+    if (this.tokenService.isLoggedIn() && this.tokenService.getUserRole() === 'ROLE_ADMIN') {
+      this.router.navigate(['admin'])
+    } else if(this.tokenService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
+  }
 
 
 }
