@@ -35,4 +35,9 @@ export class HomeAdminComponent implements OnInit, AfterViewInit {
     console.log('deletei')
   }
 
+  sair(): void {
+    this.tokenService.logout();
+    window.location.reload();
+  }
+
 }
