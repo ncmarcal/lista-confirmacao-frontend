@@ -50,9 +50,9 @@ export class LoginComponent {
   }
 
   private navegarVerificandoRole() {
-    if (this.tokenService.isLoggedIn() && this.tokenService.getUserRole() === 'ROLE_ADMIN') {
+    if (this.tokenService.getUserRole() === 'ROLE_ADMIN') {
       this.router.navigate(['admin'])
-    } else if(this.tokenService.isLoggedIn()) {
+    } else {
       this.router.navigate(['']);
     }
   }
