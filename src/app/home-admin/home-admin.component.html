@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center vh-100 vw-100">
   <p-card class="p-card">
     <p-table
-    [value]="customers"
+    [value]="usuariosModel"
     [paginator]="true"
     [rows]="5"
     [tableStyle]="{ 'min-width': '50rem' }"
@@ -10,16 +10,18 @@
       <ng-template pTemplate="header">
           <tr>
               <th style="width:20%">ID</th>
-              <th style="width:35%">USUÁRIO</th>
-              <th style="width:35%">PRESENÇA</th>
-              <th style="width:10%"></th>
+              <th style="width:30%">USUÁRIO</th>
+              <th style="width:25%">PAPEL</th>
+              <th style="width:20%">PRESENÇA</th>
+              <th style="width:5%"></th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-customer>
           <tr>
             <td>{{ customer.id }}</td>
-            <td>{{ customer.name }}</td>
-            <td>{{ customer.presenca }}</td>
+            <td>{{ customer.username }}</td>
+            <td>{{ customer.role }}</td>
+            <td>{{ customer.presence }}</td>
             <td> <i class="pi pi-trash delete-icon" (click)="deletar()"></i></td>
           </tr>
       </ng-template>

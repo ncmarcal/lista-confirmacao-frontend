@@ -4,6 +4,10 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
+import { HomeAdminService } from './home-admin.service';
+import { UsuariosModel } from './model/usuarios.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home-admin',
@@ -11,24 +15,29 @@ import { TableModule } from 'primeng/table';
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.scss'
 })
-export class HomeAdminComponent implements OnInit, AfterViewInit {
+export class HomeAdminComponent implements OnInit {
 
-  customers = [
-    { id: 1, name: 'Item 1', presenca: true },
-    { id: 2, name: 'Item 2', presenca: true },
-    { id: 3, name: 'Item 3', presenca: true },
-    { id: 4, name: 'Item 4', presenca: true },
-    { id: 5, name: 'Item 5', presenca: true },
-    { id: 6, name: 'Item 6', presenca: true }
-  ];
+
+  usuariosModel = new Array<UsuariosModel>;
 
   private tokenService = inject(TokenService);
+  private service = inject(HomeAdminService);
+  private messageService = inject(MessageService)
 
   ngOnInit() {
     console.log(this.tokenService.getUserRole());
+    this.carregarTodosUsuarios();
   }
 
-  ngAfterViewInit(): void {
+  carregarTodosUsuarios(): void {
+    this.service.carregarTodosUsuarios().subscribe({
+      next: (resposta) => {
+        this.usuariosModel = resposta;
+      },
+      error: (erro: HttpErrorResponse) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: erro.error });
+      }
+    })
   }
 
   deletar(): void {
