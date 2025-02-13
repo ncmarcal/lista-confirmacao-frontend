@@ -4,7 +4,7 @@ import { CadastroModel } from './model/cadastro.model';
 import { Observable } from 'rxjs';
 import { URL_API } from '../shared/url-api';
 import { getAuthHeaders } from '../shared/auth-headers';
-import { RespostaDTO } from './model/resposta-dto';
+import { RespostaDTO } from '../shared/model/resposta-dto';
 
 @Injectable({
   providedIn: 'root'

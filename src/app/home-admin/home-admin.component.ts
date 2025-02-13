@@ -44,8 +44,17 @@ export class HomeAdminComponent implements OnInit {
     })
   }
 
-  deletar(): void {
-    console.log('deletei')
+  deletar(id: number): void {
+    this.service.deletarUsuario(id).subscribe({
+      next: (resposta) => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: resposta.message });
+        // TODO: verificar uma forma de não chamar a lista novamente para atualizar a tela
+        this.carregarTodosUsuarios();
+      },
+      error: (erro: HttpErrorResponse) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: erro.error });
+      }
+    })
   }
 
   sair(): void {

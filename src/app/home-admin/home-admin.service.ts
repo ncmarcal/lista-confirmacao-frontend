@@ -4,6 +4,7 @@ import { URL_API } from '../shared/url-api';
 import { Observable } from 'rxjs';
 import { UsuariosModel } from './model/usuarios.model';
 import { getAuthHeaders } from '../shared/auth-headers';
+import { RespostaDTO } from '../shared/model/resposta-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,20 @@ export class HomeAdminService {
         }
       })
     });
+  }
+
+  deletarUsuario(id: number): Observable<RespostaDTO> {
+    return new Observable<RespostaDTO>((observer) => {
+      this.httpClient.delete<RespostaDTO>(URL_API + `/admin/delete/${id}`, {headers: getAuthHeaders()}).subscribe({
+        next: (resposta) => {
+          observer.next(resposta);
+          observer.complete();
+        },
+        error: (erro) => {
+          observer.error(erro);
+          observer.complete();
+        }
+      })
+    })
   }
 }
