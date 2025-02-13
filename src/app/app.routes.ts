@@ -4,9 +4,11 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardUsuario } from './shared/services/guard/usuario/auth-guard-usuario.service';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { AuthGuardAdmin } from './shared/services/guard/admin/auth-guard-admin.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardUsuario] },
   { path: 'login', component: LoginComponent },
-  { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuardAdmin] }
+  { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuardAdmin]},
+  { path: 'admin/register', component: CadastroComponent, canActivate: [AuthGuardAdmin] }
 ];

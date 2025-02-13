@@ -11,10 +11,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
-  imports: [CardModule, ButtonModule, DividerModule, TableModule, IconFieldModule, InputIconModule, InputTextModule],
+  imports: [CardModule, ButtonModule, DividerModule, TableModule, IconFieldModule, InputIconModule, InputTextModule, RouterModule],
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.scss'
 })
@@ -24,7 +25,8 @@ export class HomeAdminComponent implements OnInit {
 
   private tokenService = inject(TokenService);
   private service = inject(HomeAdminService);
-  private messageService = inject(MessageService)
+  private messageService = inject(MessageService);
+  private router = inject(Router);
 
   ngOnInit() {
     console.log(this.tokenService.getUserRole());
@@ -55,6 +57,10 @@ export class HomeAdminComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
     return inputValue;
+  }
+
+  cadastrarUsuario(): void {
+    this.router.navigate(['admin/register']);
   }
 
 }

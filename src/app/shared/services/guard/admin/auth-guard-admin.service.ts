@@ -14,7 +14,7 @@ export class AuthGuardAdmin implements CanActivate {
       if (token && userRole === 'ROLE_ADMIN') {
         return true;
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
         return false;
       }
     }

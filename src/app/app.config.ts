@@ -15,5 +15,5 @@ export const appConfig: ApplicationConfig = {
         darkModeSelector: false || 'none'
       }
     }
-  }), provideHttpClient(), MessageService]
+  }), provideHttpClient(), MessageService, provideRouter(routes)]
 };

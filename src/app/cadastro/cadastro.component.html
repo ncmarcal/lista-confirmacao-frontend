@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center align-items-center vh-100 vw-100">
+  <p-card class="p-card">
+    <div class="row">
+      <div class="col-5">
+        <div class="form-bg mt-4">
+          <p class="boas-vindas">Cadastre um usuário!</p>
+          <form [formGroup]="formCadastro">
+          <div class="mb-3">
+            <p-float-label variant="on">
+              <label for="username">Usuário</label>
+              <input [style]="{ width: '100%' }" type="text" formControlName="usuario" pInputText />
+            </p-float-label>
+          </div>
+          <div class="mb-3">
+            <p-float-label variant="on">
+              <label for="password">Senha</label>
+              <input [style]="{ width: '100%' }" type="password" formControlName="senha" pInputText />
+            </p-float-label>
+          </div>
+          <div class="mb-3">
+            <p-select formControlName="papel" [options]="papeis" [style]="{ width: '100%' }" placeholder="Selecione o papel"/>
+          </div>
+          <div class="mb-4">
+            <p-checkbox class="mr-2" [binary]="true" formControlName="presenca" inputId="prc" />
+            <label for="prc" [style]="{ marginLeft: '.5rem', color: '#70738B' }">Presença</label>
+          </div>
+          <div class="mb-2">
+            <p-button class="d-grid" [disabled]="formCadastro.invalid" label="Cadastrar" (onClick)="cadastrar()"/>
+          </div>
+          <div class="mb-4">
+            <p-button class="d-grid" severity="secondary" label="Voltar" (onClick)="voltar()" />
+          </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-1">
+        <p-divider type="solid" layout="vertical"></p-divider>
+      </div>
+      <div class="col-6 align-self-center">
+        <div class="d-flex justify-content-center">
+          <img src="assets/images/undraw_sign-up_qamz.svg" alt="signup" width="300" height="300">
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>
