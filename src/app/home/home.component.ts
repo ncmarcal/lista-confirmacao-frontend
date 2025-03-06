@@ -40,6 +40,19 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  desconfirmarPresenca(): void {
+    const requisicao = this.recuperarUsuarioPeloToken();
+    this.service.desconfirmarPresenca(requisicao).subscribe({
+      next: (resposta) => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: resposta.message });
+        this.verificarPresenca();
+      },
+      error: (erro: HttpErrorResponse) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: erro.error });
+      }
+    })
+  }
+
   verificarPresenca(): void {
     const requisicao = this.recuperarUsuarioPeloToken();
     this.service.verificarPresenca(requisicao).subscribe({

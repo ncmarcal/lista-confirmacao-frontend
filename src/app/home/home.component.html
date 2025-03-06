@@ -11,6 +11,8 @@
         <button style="margin-right: 1rem; width: 165.48px;" pButton severity="secondary" (click)="sair()">Sair</button>
         @if (!confirmacaoDTO.presence) {
           <button pButton (click)="confirmarPresenca()">Confirmar presença</button>
+        } @else {
+          <button pButton (click)="desconfirmarPresenca()">Desconfirmar presença</button>
         }
       </div>
 

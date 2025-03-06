@@ -27,6 +27,21 @@ export class HomeService {
     });
   }
 
+  desconfirmarPresenca(requisicao: ConfirmacaoDTO): Observable<ConfirmacaoDTO> {
+    return new Observable<ConfirmacaoDTO>((observer) => {
+      this.httpClient.post<ConfirmacaoDTO>(URL_API + '/user/presence-disconfirm', requisicao, {headers: getAuthHeaders()}).subscribe({
+        next: (resposta) => {
+          observer.next(resposta);
+          observer.complete();
+        },
+        error: (erro) => {
+          observer.error(erro);
+          observer.complete();
+        }
+      })
+    });
+  }
+
   verificarPresenca(requisicao: ConfirmacaoDTO): Observable<ConfirmacaoDTO> {
     return new Observable<ConfirmacaoDTO>((observer) => {
       this.httpClient.post<ConfirmacaoDTO>(URL_API + '/user/confirm-verification', requisicao, {headers: getAuthHeaders()}).subscribe({
