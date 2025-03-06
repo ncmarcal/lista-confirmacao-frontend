@@ -18,6 +18,15 @@ export class TokenService {
     return null;
   }
 
+  getUserName(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken: any = jwt_decode.jwtDecode(token);
+      return decodedToken.sub;
+    }
+    return null;
+  }
+
   isLoggedIn(): boolean {
     return !!this.getToken();
   }

@@ -37,7 +37,7 @@ export class CadastroComponent {
     usuario: ['', Validators.required],
     senha: ['', Validators.required],
     papel: ['', Validators.required],
-    presenca: [false, Validators.required]
+    presenca: [false]
   })
 
   cadastrar(): void {
@@ -45,6 +45,7 @@ export class CadastroComponent {
       this.service.cadastrarUsuario(this.montarRequisicao()).subscribe({
         next: (resposta) => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: resposta.message });
+          this.formCadastro.reset();
         },
         error: (erro: HttpErrorResponse) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: erro.error });
